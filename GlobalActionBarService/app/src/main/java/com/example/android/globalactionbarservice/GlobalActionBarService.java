@@ -50,6 +50,7 @@ public class GlobalActionBarService extends AccessibilityService {
        LayoutInflater inflater = LayoutInflater.from(this);
        inflater.inflate(R.layout.action_bar, mLayout);
        wm.addView(mLayout, lp);
+       configureSwipeButton();  //Configures the swipe button with hardcardcoded points
     }
            
 
@@ -63,3 +64,19 @@ public class GlobalActionBarService extends AccessibilityService {
 
     }
 }
+
+private void configureSwipeButton() {
+   Button swipeButton = (Button) mLayout.findViewById(R.id.swipe);
+   swipeButton.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+           Path swipePath = new Path();
+           swipePath.moveTo(1000, 1000);
+           swipePath.lineTo(100, 1000);
+           GestureDescription.Builder gestureBuilder = new GestureDescription.Builder();
+           gestureBuilder.addStroke(new GestureDescription.StrokeDescription(swipePath, 0, 500));
+           dispatchGesture(gestureBuilder.build(), null, null);
+       }
+   });
+}
+
