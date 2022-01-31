@@ -35,7 +35,8 @@ public class GlobalActionBarService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-
+    FrameLayout mLayout;
+    ...
     }
 
     @Override
