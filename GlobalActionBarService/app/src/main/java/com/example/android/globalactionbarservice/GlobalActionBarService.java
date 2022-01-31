@@ -123,3 +123,13 @@ public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //c
 public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click back to main wallet
 
 public static final AccessibilityNodeInfo.AccessibilityAction ACTION_SHOW_ON_SCREEN  //Shows the node boundary on screen, may be good for testing
+public static final int TYPE_WINDOW_CONTENT_CHANGED  //Detects a change in the window
+//Grant a clayout acess and then send a action click to the window in order to start it.
+
+
+public void addAction (AccessibilityNodeInfo.AccessibilityAction action) //Add an action
+public boolean performAccessibilityAction (int action, 
+                Bundle arguments)  //Performs the action a view
+	public void onInitializeAccessibilityNodeInfo (AccessibilityNodeInfo info) //Initiliases a Node info with information on the view.
+	
+	
