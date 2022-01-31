@@ -32,11 +32,16 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class GlobalActionBarService extends AccessibilityService {
+    FrameLayout mLayout;
+    ...
+        
+   @Override
+   protected void onServiceConnected() {       
+           
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-    FrameLayout mLayout;
-    ...
+
     }
 
     @Override
