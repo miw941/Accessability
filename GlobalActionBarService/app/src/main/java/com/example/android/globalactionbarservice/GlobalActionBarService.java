@@ -51,6 +51,7 @@ public class GlobalActionBarService extends AccessibilityService {
        inflater.inflate(R.layout.action_bar, mLayout);
        wm.addView(mLayout, lp);
        configureSwipeButton();  //Configures the swipe button with hardcardcoded points
+		configureScrollButton();
     }
            
 
@@ -80,3 +81,45 @@ private void configureSwipeButton() {
    });
 }
 
+private AccessibilityNodeInfo findScrollableNode(AccessibilityNodeInfo root) {
+   Deque<AccessibilityNodeInfo> deque = new ArrayDeque<>();
+   deque.add(root);
+   while (!deque.isEmpty()) {
+       AccessibilityNodeInfo node = deque.removeFirst();
+       if (node.getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD)) {
+           return node;
+       }
+       for (int i = 0; i < node.getChildCount(); i++) {
+           deque.addLast(node.getChild(i));
+       }
+   }
+   return null;
+}
+
+private void configureScrollButton() {
+   Button scrollButton = (Button) mLayout.findViewById(R.id.scroll);
+   scrollButton.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+           AccessibilityNodeInfo scrollable = findScrollableNode(getRootInActiveWindow());
+           if (scrollable != null) {
+               scrollable.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD.getId());
+           }
+       }
+   });
+}
+
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_PASTE
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click jenj
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click send
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click address
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_PASTE 			//Paste ammount
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click ammount
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_PASTE 			//Paste ammount
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click next step
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click send now
+																			//Check the node TXRECEIPT STATUS for Success
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click back																			
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_CLICK   //click back to main wallet
+
+public static final AccessibilityNodeInfo.AccessibilityAction ACTION_SHOW_ON_SCREEN  //Shows the node boundary on screen, may be good for testing
