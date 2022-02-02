@@ -131,5 +131,18 @@ public void addAction (AccessibilityNodeInfo.AccessibilityAction action) //Add a
 public boolean performAccessibilityAction (int action, 
                 Bundle arguments)  //Performs the action a view
 	public void onInitializeAccessibilityNodeInfo (AccessibilityNodeInfo info) //Initiliases a Node info with information on the view.
+
+	//Accessability event communicates UI changes.
+	//We need to simulate that change.
+	
+	
+public void onInitializeAccessibilityNodeInfo (AccessibilityNodeInfo info)  //Initiliases a node with infromation on the view
+	
+//AccessibilityWindowInfo(AccessibilityWindowInfo info)
+//Start of Program
+	
+	
+	
+	
 	
 	
